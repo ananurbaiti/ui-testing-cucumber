@@ -9,6 +9,7 @@ Kerangka pengujian UI Web modern yang dibangun dengan **Cucumber**, **Selenium W
 - **Penanganan alert** dan popup secara otomatis.
 - **Hooks** untuk setup dan teardown pengujian.
 - **Skema pengujian** positif & negatif
+- **CI/CD Integration** untuk integrasi dengan GitHub Actions
 
 ## 💻 Teknologi yang Digunakan
 - Java 17 (OpenJDK 64-Bit Server VM 23.0.2+7-58)
@@ -47,7 +48,8 @@ web-ui-automation21/
 │       └── resources/
 │           └── features/                      # File .feature Gherkin
 │               └── signup.feature
-│                        
+│
+|── .github/workflows/                         # Konfigurasi CI/CD                        
 ├── build.gradle                               # File konfigurasi Gradle
 └── README.md                                  # Dokumentasi proyek
 
@@ -122,7 +124,12 @@ public class ProductPage extends BasePage {
 
 ## 🔄 Integrasi CI/CD
 
-Saat ini framework ini belum terintegrasi dengan pipeline CI/CD. Kamu bisa menambahkan integrasi seperti GitHub Actions, Jenkins, atau lainnya sesuai kebutuhan di masa depan.
+Framework ini menyertakan konfigurasi GitHub Actions untuk continuous integration yang akan:
+
+1. Men-setup JDK 17
+2. Menginstal browser Chrome
+3. Menjalankan pengujian
+4. Mengupload hasil pengujian sebagai artifacts
 
 ## 📝 Praktik Terbaik yang Diterapkan
 
