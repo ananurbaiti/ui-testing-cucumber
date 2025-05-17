@@ -3,18 +3,20 @@
 Ini adalah framework untuk otomatisasi pengujian UI berbasis Selenium dan Cucumber
 
 ## ✨ Fitur Utama
-- Automatisasi pengujian UI menggunakan Selenium
-- Integrasi dengan Cucumber untuk penulisan Gherkin
-- Validasi popup dan alert
+- Automasi pengujian UI untuk fitur signup menggunakan Selenium WebDriver.
+- BDD dengan Cucumber untuk menulis skenario pengujian yang mudah dibaca.
+- Page Object Model (POM) untuk struktur kode yang rapi dan mudah dipelihara.
+- Penanganan alert dan popup secara otomatis.
+- Hooks untuk setup dan teardown pengujian.
 - Skema pengujian positif & negatif
 
 ## 💻 Teknologi yang Digunakan
-- Java
+- Java 17 (OpenJDK 64-Bit Server VM 23.0.2+7-58)
 - Selenium WebDriver
 - Cucumber
 - Gradle
 - WebDriverManager
-- TestNG
+- JUnit
 - IntelliJ IDEA
 
 ## 🗂️ Struktur Proyek
@@ -24,39 +26,40 @@ web-ui-automation21/
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   ├── pages/
-│   │   │   │   ├── BasePage.java
-│   │   │   │   ├── HomePage.java
-│   │   │   │   └── components/
-│   │   │   │       └── PopUpSignUp.java
-│   │   │   └── utilities/
-│   │   │       ├── AlertHandler.java
-│   │   │       └── DriverManager.java
+│   │   │   ├── pages/                         # Kelas-kelas halaman utama
+│   │   │   │   ├── BasePage.java              # Kelas dasar halaman
+│   │   │   │   ├── HomePage.java              # Halaman beranda
+│   │   │   │   └── components/                # Komponen kecil pada halaman
+│   │   │   │       └── PopUpSignUp.java       # Komponen popup signup
+│   │   │   └── utilities/                     # Utilitas pendukung
+│   │   │       ├── AlertHandler.java          # Penanganan alert
+│   │   │       └── DriverManager.java         # Setup dan teardown WebDriver
 │
 │   └── test/
 │       ├── java/
 │       │   └── com/anna/
-│       │       ├── runner/
+│       │       ├── runner/                    # Runner Cucumber
 │       │       │   └── CucumberRunnerTest.java
-│       │       ├── stepDefinitions/
+│       │       ├── stepDefinitions/           # Implementasi langkah Gherkin
 │       │       │   ├── HomeStepDefinition.java
-│       │       │   └── Hooks.java
+│       │       │   └── Hooks.java             # Setup dan teardown per scenario
 │
 │       └── resources/
-│           └── features/
+│           └── features/                      # File .feature Gherkin
 │               └── signup.feature
-│
-├── .github/workflows/        # Konfigurasi CI/CD
-├── build.gradle              # Konfigurasi Gradle
-└── README.md                 # Dokumentasi proyek
+│                        
+├── build.gradle                               # File konfigurasi Gradle
+└── README.md                                  # Dokumentasi proyek
+
+               
 ```
 
 
 ## 📋 Prasyarat
-- Java 17+
+- Java 11 atau lebih tinggi
 - Chrome browser
-- IntelliJ IDEA (atau IDE lain)
-- Gradle
+- IntelliJ IDEA
+- Gradle 7.6+
 
 ## ▶️ Cara Menjalankan Pengujian
 
@@ -87,9 +90,9 @@ Setelah menjalankan pengujian, laporan tersedia di:
 
 ### Menambahkan Halaman Baru
 
-1. Buat kelas Page baru yang meng-extend BasePage
-2. Tambahkan lokator WebElement menggunakan anotasi @FindBy
-3. Implementasikan metode spesifik halaman
+1. Buat kelas Page baru yang meng-extend ```BasePage```.
+2. Tambahkan locator WebElement dengan ```@FindBy```.
+3. Implementasikan metode halaman sesuai kebutuhan.
 
 Contoh:
 ```java
@@ -106,27 +109,21 @@ public class ProductPage extends BasePage {
 
 ### Menambahkan Fitur Baru
 
-1. Buat file .feature baru di direktori features
-2. Tulis skenario menggunakan sintaks Gherkin
-3. Implementasikan step definitions di kelas step baru atau yang sudah ada
+1. Tambahkan file .feature baru di direktori src/test/resources/features
+2. Tulis skenario pengujian menggunakan Gherkin.
+3. Buat step definitions baru atau tambahkan pada kelas yang sudah ada.
 
 ## 🔄 Integrasi CI/CD
 
-Framework ini menyertakan konfigurasi GitHub Actions untuk continuous integration yang akan:
-
-1. Men-setup JDK 17
-2. Menginstal browser Chrome
-3. Menjalankan pengujian
-4. Mengupload hasil pengujian sebagai artifacts
+Saat ini framework ini belum terintegrasi dengan pipeline CI/CD. Kamu bisa menambahkan integrasi seperti GitHub Actions, Jenkins, atau lainnya sesuai kebutuhan di masa depan.
 
 ## 📝 Praktik Terbaik yang Diterapkan
 
-- ✅ **Enkapsulasi** - Menyembunyikan detail implementasi internal
-- ✅ **Fluent Interface** - Method chaining untuk meningkatkan keterbacaan
-- ✅ **Clean Code** - Penamaan yang jelas dan struktur yang terorganisir
-- ✅ **Fail-fast** - Kegagalan awal dengan validasi yang tepat
-- ✅ **Central configuration** - Konfigurasi terpusat untuk kemudahan pemeliharaan
-- ✅ **Logging** - Pesan log yang komprehensif untuk debug
+- Enkapsulasi detail implementasi dalam Page Object.
+- Penamaan variabel dan metode yang jelas.
+- Struktur proyek yang terorganisir.
+- Logging untuk memudahkan debugging.
+- Validasi state aplikasi agar tes fail cepat jika ada masalah.
 
 ## 📜 Lisensi
 
