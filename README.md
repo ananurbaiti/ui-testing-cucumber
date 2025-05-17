@@ -1,14 +1,14 @@
 # 🚀 UI Testing Framework with Cucumber & Selenium
 
-Ini adalah framework untuk otomatisasi pengujian UI berbasis Selenium dan Cucumber
+Kerangka pengujian UI Web modern yang dibangun dengan **Cucumber**, **Selenium WebDriver**, dan **Java** untuk otomatisasi pengujian aplikasi web.
 
 ## ✨ Fitur Utama
-- Automasi pengujian UI untuk fitur signup menggunakan Selenium WebDriver.
-- BDD dengan Cucumber untuk menulis skenario pengujian yang mudah dibaca.
-- Page Object Model (POM) untuk struktur kode yang rapi dan mudah dipelihara.
-- Penanganan alert dan popup secara otomatis.
-- Hooks untuk setup dan teardown pengujian.
-- Skema pengujian positif & negatif
+- **Automasi pengujian UI** untuk fitur signup menggunakan Selenium WebDriver.
+- **BDD dengan Cucumber** untuk menulis skenario pengujian yang mudah dibaca.
+- **Page Object Model (POM)** untuk struktur kode yang rapi dan mudah dipelihara.
+- **Penanganan alert** dan popup secara otomatis.
+- **Hooks** untuk setup dan teardown pengujian.
+- **Skema pengujian** positif & negatif
 
 ## 💻 Teknologi yang Digunakan
 - Java 17 (OpenJDK 64-Bit Server VM 23.0.2+7-58)
@@ -77,14 +77,21 @@ web-ui-automation21/
 
 ## 📊 Laporan Pengujian
 
-Setelah menjalankan pengujian, laporan tersedia di:
+- Laporan hasil pengujian otomatis dihasilkan dalam format HTML.
+- Lokasi laporan: ```target/cucumber-reports.html```.
+- Laporan ini menampilkan detail skenario, langkah, status (pass/fail), dan durasi eksekusi.
+
+
 - HTML Report: `html:target/cucumber-reports.htmll`
 
 ## ⚙️ Konfigurasi
 
-- URL aplikasi dapat disesuaikan di kelas DriverManager pada method getDriver().
-- Timeout dan pengaturan wait dapat diubah di BasePage method getWait(int seconds).
-- WebDriverManager mengelola otomatis versi driver Chrome, pastikan koneksi internet tersedia.
+- Browser: Menggunakan Chrome via WebDriverManager di ```DriverManager.java```.
+- Hooks: Inisialisasi dan teardown browser di ```Hooks.java``` dengan anotasi ```@Before``` dan ```@After```.
+- Runner: ```CucumberRunnerTest.java``` mengatur direktori fitur, glue, dan laporan HTML.
+- Dependencies: Dikelola lewat ```build.gradle``` (Cucumber, Selenium, WebDriverManager).
+- Struktur Fitur & Step: ```.feature``` di ```resources/features```, step di ```stepDefinitions```.
+
 
 ## 🧩 Cara Memperluas Framework
 
@@ -109,7 +116,7 @@ public class ProductPage extends BasePage {
 
 ### Menambahkan Fitur Baru
 
-1. Tambahkan file .feature baru di direktori src/test/resources/features
+1. Tambahkan file ```.feature``` baru di direktori ```src/test/resources/features```.
 2. Tulis skenario pengujian menggunakan Gherkin.
 3. Buat step definitions baru atau tambahkan pada kelas yang sudah ada.
 
