@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.ananurbaiti'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Web Driver Manager
+    implementation("io.github.bonigarcia:webdrivermanager:6.1.0")
+
+    //Selenium Java
+    implementation("org.seleniumhq.selenium:selenium-java:4.32.0")
+
+    //Junit4-Untuk Runner
+    testImplementation("junit:junit:4.13.2")
+
+    //Cucumber-untuk step definitions
+    implementation 'io.cucumber:cucumber-java:7.22.1'
+
+    //Cucumber Junit4 -untuk feature
+    testImplementation 'io.cucumber:cucumber-junit:7.22.1'
+
+    // https://mvnrepository.com/artifact/com.github.javafaker/javafaker
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    implementation 'org.slf4j:slf4j-simple:2.0.9'
+    implementation 'ch.qos.logback:logback-classic:1.4.11'
+}
+
+test {
+    useJUnit()
+}
+
+test {
+    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+}
