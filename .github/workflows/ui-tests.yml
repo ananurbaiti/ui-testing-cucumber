@@ -20,8 +20,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
+    #instal browser
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1.7.3
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -29,8 +30,19 @@ jobs:
       - name: Run UI tests
         run: ./gradlew clean test
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v3
+      #Archive test result
+      - name: Archive Test Result
+        uses: actions/upload-artifact@v4.6.2
+        if: always()
         with:
-          name: cucumber-html-report
-          path: target/cucumber-reports.html
+          name: Cucumber Report
+          path: target
+
+      #deploy to GitHub Pages
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target
+      
