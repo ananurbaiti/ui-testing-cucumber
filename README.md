@@ -84,7 +84,7 @@ web-ui-automation21/
 - Laporan ini menampilkan detail skenario, langkah, status (pass/fail), dan durasi eksekusi.
 
 
-- HTML Report: `html:target/cucumber-reports.htmll`
+- HTML Report: `html:target/cucumber-reports.html`
 
 ## ⚙️ Konfigurasi
 
